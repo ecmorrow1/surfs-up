@@ -26,24 +26,16 @@ From the data, the similarities between the inner quartile ranges indicate that 
 
 Given that demand for ice cream is most likely to be enjoyed in warmer weather, one set of queries to help determine where on Oahu to locate the store would be to determine which weather station consistently has the highest temperatures on average for June and December:
 
-results = session.query(Measurement.tobs,Measurement.station).\\
-filter(Measurement.tobs >= 72).\\
-filter(extract('month',Measurement.date)==6)
+results = session.query(Measurement.tobs,Measurement.station).filter(Measurement.tobs >= 72).filter(extract('month',Measurement.date)==6)
 
-results = session.query(Measurement.tobs,Measurement.station).\\
-filter(Measurement.tobs >= 72).\\
-filter(extract('month',Measurement.date)==12)
+results = session.query(Measurement.tobs,Measurement.station).filter(Measurement.tobs >= 72).filter(extract('month',Measurement.date)==12)
 
 Each of these queries can then be imported into a DataFrame and get the count of which station has the highest count of days higher than 72 °F.
 
 Those queries can be followed up with a similar set of queries to determine which stations have the most days with zero rainfall in both months:
 
-results = session.query(Measurement.prcp,Measurement.station).\\
-filter(Measurement.prcp == 0).\\
-filter(extract('month',Measurement.date)==6)
+results = session.query(Measurement.prcp,Measurement.station).filter(Measurement.prcp == 0).filter(extract('month',Measurement.date)==6)
 
-results = session.query(Measurement.prcp,Measurement.station).\\
-filter(Measurement.prcp == 0).\\
-filter(extract('month',Measurement.date)==12)
+results = session.query(Measurement.prcp,Measurement.station).filter(Measurement.prcp == 0).filter(extract('month',Measurement.date)==12)
 
 Similarly, analysis after importing to a DataFrame will aid in determining which stations have the most days with zero rainfall.  Finding the stations with the highest temperatures and the lowest rainfall will help in determining the ideal location for the store.
